@@ -3,8 +3,72 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Chat-Data</title>
+
+	<!-- bootstrap css -->
+	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- custom styles -->
+	<link type="text/css" rel="stylesheet" href="styles.css">
 </head>
 <body>
+	<nav class="navbar navbar-default">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        ChatData
+	      </a>
+	    </div>
+	    <span class="navbar-text navbar-right">
+	    	<i class="glyphicon glyphicon-tasks navbar-link"></i>
+	    </span>
+	  </div>
+	</nav>
 	
+	<div class="container-fluid">
+		<div class="row main-row">
+			<div class="col-sm-8">
+				<div class="row messages-row">
+				 	<h4>No messages yet!</h4>	
+				 	<div class="one-message">
+			 			<div class="message-bubble">
+			 				<p>This is a sample message. Isn't it great?</p>
+			 			</div>
+			 			<div class="author">
+			 				<p>username</p>
+			 			</div>
+				 	</div>
+		 		 	<div class="one-message">
+		 	 			<div class="message-bubble">
+		 	 				<p>Another message. Here goes nothing, kids!</p>
+		 	 			</div>
+		 	 			<div class="author">
+		 	 				<p>username</p>
+		 	 			</div>
+		 		 	</div>
+ 		 		 	<div class="one-message">
+ 		 	 			<div class="message-bubble">
+ 		 	 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt pariatur doloremque omnis dicta, quidem ducimus repudiandae. Magnam hic neque, velit ipsam sit voluptatem minus voluptatum odio, dolorum deleniti maiores quasi.</p>
+ 		 	 			</div>
+ 		 	 			<div class="author">
+ 		 	 				<p>username</p>
+ 		 	 			</div>
+ 		 		 	</div>
+				</div>
+				<div class="row input-row navbar-fixed-bottom">
+					<form class="form-inline chat-form">
+						<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
+						<button type="submit" class="btn btn-primary" id="Send">Send</button>
+					</form>
+				</div>
+			</div>
+			<div class="col-sm-4 data-section">
+				<!-- this section will contain data visualizations ...
+				will expand/collapse on click of button (use Bootstrap collapse - JS plugin) -->
+			</div>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>

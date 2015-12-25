@@ -10,7 +10,7 @@
 	<link type="text/css" rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">
@@ -26,7 +26,7 @@
 	<div class="container-fluid">
 		<div class="row main-row">
 			<div class="col-sm-8">
-				<div class="row messages-row">
+				<div class="messages-row">
 				 	<h4>No messages yet!</h4>	
 				 	<div class="one-message">
 			 			<div class="message-bubble">
@@ -52,18 +52,34 @@
  		 	 				<p>username</p>
  		 	 			</div>
  		 		 	</div>
-				</div>
-				<div class="row input-row navbar-fixed-bottom">
-					<form class="form-inline chat-form">
-						<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
-						<button type="submit" class="btn btn-primary" id="Send">Send</button>
-					</form>
+ 		 		 	<div class="one-message">
+ 		 	 			<div class="message-bubble">
+ 		 	 				<p>Another message. Yay for more and more messages!</p>
+ 		 	 			</div>
+ 		 	 			<div class="author">
+ 		 	 				<p>username</p>
+ 		 	 			</div>
+ 		 		 	</div>
+ 		 		 	<div class="one-message">
+ 		 	 			<div class="message-bubble">
+ 		 	 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum animi, amet aliquam repellat tenetur iste consectetur aperiam quaerat optio, possimus accusamus voluptatibus nostrum dolorum aut. Cupiditate, numquam nostrum distinctio eum!!</p>
+ 		 	 			</div>
+ 		 	 			<div class="author">
+ 		 	 				<p>username</p>
+ 		 	 			</div>
+ 		 		 	</div>
 				</div>
 			</div>
 			<div class="col-sm-4 data-section">
 				<!-- this section will contain data visualizations ...
 				will expand/collapse on click of button (use Bootstrap collapse - JS plugin) -->
 			</div>
+		</div>
+		<div class="row input-row">
+			<form class="form-inline chat-form">
+				<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
+				<button type="submit" class="btn btn-primary" id="Send">Send</button>
+			</form>
 		</div>
 	</div>
 

@@ -14,9 +14,13 @@ $(function() {
     	return username;
     }
     getUsername();
-    myFirebaseRef.push({
-    	username: getUsername(), 
-    	message: "hello world!"
+
+    $('.chat-form').on('submit', function() {
+    	console.log('submitted:', $('#message').val());
+    	myFirebaseRef.push({
+    		username: getUsername(), 
+    		message: $('#message').val()
+    	});
     });
 
     myFirebaseRef.on("child_added", createMessageFromFirebase);

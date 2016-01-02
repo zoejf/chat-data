@@ -13,40 +13,55 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">
-	        ChatData
-	      </a>
+	    	<span class="navbar-brand">ChatData</span>
 	    </div>
 	    <span class="navbar-text navbar-right">
 	    	<i class="glyphicon glyphicon-tasks navbar-link"></i>
 	    </span>
 	  </div>
 	</nav>
-	
-	<div class="container-fluid">
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+	        <h4 class="modal-title" id="myModalLabel">Welcome to ChatData!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form class="username-form">
+	        	<input type="text" class="form-control" id="username" placeholder="Choose your username..." autofocus>
+	        	<button type="submit" class="btn btn-primary">Submit</button>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- <div class="container-fluid"> -->
 		<div class="row main-row">
-			<div class="col-sm-8">
-				<div class="messages-row">
-
+			<div class="col-sm-12 messages-section">
+				<div class="row messages-row">
 				 	<h4>No messages yet!</h4>	
-
+				</div>
+				<div class="row input-row">
+					<form class="form-inline chat-form">
+						<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
+						<button type="submit" class="btn btn-primary" id="Send">Send</button>
+					</form>
+				<!-- 			<p class="chatting-as">Chatting as NAME <a data-toggle="modal" data-target="#myModal">[change]</a></p> -->
 				</div>
 			</div>
-			<div class="col-sm-4 data-section">
+			<div class="data-section">
+				<h1>Analyze It!</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facere velit, suscipit quia expedita. Asperiores amet, cumque mollitia explicabo eius quaerat molestiae earum magnam accusamus quibusdam quidem repudiandae odit consectetur.</p>
 				<!-- this section will contain data visualizations ...
 				will expand/collapse on click of button (use Bootstrap collapse - JS plugin) -->
 			</div>
 		</div>
-		<div class="row input-row">
-			<form class="form-inline chat-form">
-				<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
-				<button type="submit" class="btn btn-primary" id="Send">Send</button>
-			</form>
-		</div>
-	</div>
-
+	<!-- </div> -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 	<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 	<script type="text/javascript" src="scripts.js"></script>
 </body>

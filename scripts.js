@@ -2,10 +2,7 @@ $(function() {
     console.log( "ready!" );
 
     var myFirebaseRef = new Firebase("https://radiant-fire-16.firebaseio.com/");
-
-    // var $scroll = $('.messages-row');
-    // var height = $scroll[0].scrollHeight;
-    // $scroll.scrollTop(height);
+    
     $('.messages-row').animate({ 'scrollTop': $('.messages-row')[0].scrollHeight}, '2000');
     
 
@@ -56,7 +53,6 @@ $(function() {
 
     function createMessageFromFirebase(snapshot) {
     	var messageData = snapshot.val();
-    	console.log("messageData", messageData);
 
     	var messageElement = $('<div/>', {
     		'class': 'one-message'
@@ -75,6 +71,37 @@ $(function() {
 
     myFirebaseRef.child("username").on("value", function(snapshot) {
     	console.log(snapshot.val());
+    });
+
+    //---ALCHEMY SENTIMENT API--//
+    $('#update-data').on('click', function() {
+        var sentimentResult;
+
+        $.ajax({
+            url: 'http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment',
+            type: 'POST', 
+            dataType: 'jsonp',
+            contentType: 'json',
+            jsonpCallback: 'callback', 
+            data: {
+                apikey:'cdbf2ddc186378fdc5bb377f10b0e5e4770702d2', 
+                text: 'hello%20this%20is%20a%20great%20test%20that%20might%20never%20work',
+                showSourceText:1, 
+                jsonp:'callback', 
+                outputMode: 'json'
+            },
+            success: function (data) {
+                console.log(data);
+                var score = parseInt(data.docSentiment.score) || 0;
+                var type = data.docSentiment.type;
+
+                var sentiment = $('<p />', {
+                    'class': 'sentiment',
+                    text: 'Sentiment: ' + type + 'Score: ' + score
+                }).appendTo($('#sentiment'));
+            } 
+        });
+        
     });
 
 });

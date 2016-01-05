@@ -84,8 +84,8 @@ input#message {
 	width: 90%;
 	margin: 0 auto;
 }
-p.chatting-as {
+.fine-print {
 	text-align: center;
-	color: gray;
 	font-style: italic;
+	font-size: .7em;
 }

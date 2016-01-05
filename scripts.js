@@ -95,9 +95,11 @@ $(function() {
                 var score = parseInt(data.docSentiment.score) || 0;
                 var type = data.docSentiment.type;
 
+                $('#sentiment').clear();
+
                 var sentiment = $('<p />', {
                     'class': 'sentiment',
-                    text: 'Sentiment: ' + type + 'Score: ' + score
+                    text: 'Sentiment: ' + type + '  |  Score: ' + score
                 }).appendTo($('#sentiment'));
             } 
         });

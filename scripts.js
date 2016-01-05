@@ -2,11 +2,36 @@ $(function() {
     console.log( "ready!" );
 
     var myFirebaseRef = new Firebase("https://radiant-fire-16.firebaseio.com/");
-    
+    var source = $('#messages-template').html();
+    var template = Handlebars.compile(source);
+    var messageList = $('.messages-row');
+    var $messages = $('#messages-list');
+    var messageCount = 0;
+
+    //constructor function for a message
+    //add sentiment later
+    function Messages (message, author) {
+        this.message = message;
+        this.author = author;
+        //this.sentiment = sentiment;
+    }
+
+    Messages.all = [];
+
+    Messages.prototype.save = function() {
+        Messages.all.push(this);
+        console.log(this);
+    };
+
+    Messages.prototype.render = function() {
+        var message = template(this);
+        $messages.append(message);
+    };
+
     $('.messages-row').animate({ 'scrollTop': $('.messages-row')[0].scrollHeight}, '2000');
     
-
-    $('.glyphicon.navbar-link').on('click', function() {
+    $('.glyphicon.navbar-link').on('click', function(event) {
+        event.preventDefault();
         $('.data-section').toggleClass('show');
         $('.data-section').toggleClass('col-sm-4');
         $('.messages-section').toggleClass('col-sm-12');
@@ -30,48 +55,41 @@ $(function() {
         }
     	return username;
     }
+
     getUsername();
 
-    $('.chat-form').on('submit', function() {
-    	var username = getUsername() || "anonymousss";
+    $('.chat-form').on('submit', function(event) {
+        event.preventDefault();
+    	var username = getUsername() || "anonymous";
         //message is getting sent to Firebase before username is ready??
     	myFirebaseRef.push({
     		username: username, 
     		message: $('#message').val()
     	});
-
-        //put username on page and give option to change
-        //!! doesn't quite work yet!!
-        $('<p />', {
-            'class': 'chatting-as',
-            text: 'Chatting as' + username + '<a data-toggle="modal" data-target="#myModal">[change]</a>'
-        }).appendTo($('.input-row'));
     });
 
-    myFirebaseRef.on("child_added", createMessageFromFirebase);
-    var messageList = $('.messages-row');
+    myFirebaseRef.on("child_added", getMessageFromFirebase);
 
-    function createMessageFromFirebase(snapshot) {
-    	var messageData = snapshot.val();
-
-    	var messageElement = $('<div/>', {
-    		'class': 'one-message'
-    	}).appendTo(messageList);
-
-    	var messageBubble = $('<div/>', {
-    		'class': 'message-bubble',
-    		text: messageData.message,
-    	}).appendTo(messageElement);
-
-    	var author = $('<div />', {
-    		'class': 'author',
-    		text: messageData.username
-    	}).appendTo(messageElement);
+    function renderMessages(messageArray) {
+        var messageHtml = template({ messages: messageArray });
+        $messages.append(messageHtml);
     }
 
-    myFirebaseRef.child("username").on("value", function(snapshot) {
-    	console.log(snapshot.val());
+    function getMessageFromFirebase(snapshot) {
+        var messageData = snapshot.val();
+        messageCount++;
+        var message = new Messages(messageData.message, messageData.username);
+        message.save();
+    }
+
+    myFirebaseRef.once("value", function(snap) {
+        if (Object.keys(snap.val()).length === messageCount) {
+            console.log("initial data loaded!");
+            var allMessages = Messages.all;
+            renderMessages(allMessages);
+        } 
     });
+
 
     //---ALCHEMY SENTIMENT API--//
     $('#update-data').on('click', function() {

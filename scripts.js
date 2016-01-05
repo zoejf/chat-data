@@ -20,7 +20,7 @@ $(function() {
 
     Messages.prototype.save = function() {
         Messages.all.push(this);
-        console.log(this);
+        console.log("message saved!", this);
     };
 
     Messages.prototype.render = function() {
@@ -31,7 +31,6 @@ $(function() {
     $('.messages-row').animate({ 'scrollTop': $('.messages-row')[0].scrollHeight}, '2000');
     
     $('.glyphicon.navbar-link').on('click', function(event) {
-        event.preventDefault();
         $('.data-section').toggleClass('show');
         $('.data-section').toggleClass('col-sm-4');
         $('.messages-section').toggleClass('col-sm-12');
@@ -66,29 +65,33 @@ $(function() {
     		username: username, 
     		message: $('#message').val()
     	});
+        $('.chat-form')[0].reset();
     });
 
     myFirebaseRef.on("child_added", getMessageFromFirebase);
 
-    function renderMessages(messageArray) {
-        var messageHtml = template({ messages: messageArray });
-        $messages.append(messageHtml);
-    }
+    // function renderMessages(message) {
+    //     var messageHtml = template(message);
+    //     console.log(messageHtml);
+    //     $messages.append(messageHtml);
+    // }
 
     function getMessageFromFirebase(snapshot) {
         var messageData = snapshot.val();
         messageCount++;
+        // var sentiment = messageData.sentiment || getSentiment(messageData.message);
         var message = new Messages(messageData.message, messageData.username);
         message.save();
+        message.render();
     }
 
-    myFirebaseRef.once("value", function(snap) {
-        if (Object.keys(snap.val()).length === messageCount) {
-            console.log("initial data loaded!");
-            var allMessages = Messages.all;
-            renderMessages(allMessages);
-        } 
-    });
+    // myFirebaseRef.once("value", function(snap) {
+    //     if (Object.keys(snap.val()).length === messageCount) {
+    //         console.log("initial data loaded!");
+    //         var allMessages = Messages.all;
+    //         renderMessages(allMessages);
+    //     } 
+    // });
 
 
     //---ALCHEMY SENTIMENT API--//

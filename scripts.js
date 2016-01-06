@@ -10,13 +10,33 @@ $(function() {
 
     //constructor function for a message
     //add sentiment later
-    function Messages (message, author) {
+    function Messages (message, author, createdAt) {
         this.message = message;
         this.author = author;
+        this.createdAt = createdAt;
         //this.sentiment = sentiment;
     }
 
     Messages.all = [];
+
+    function dateFormat(d) {
+        var hours = function() {
+            if (d.getHours() < 10) {
+                return "0" + d.getHours();
+            } else {
+                return d.getHours();
+            }
+        };
+        var minutes = function() {
+            if (d.getMinutes() < 10) {
+                return "0" + d.getMinutes();
+            } else {
+                d.getMinutes();
+            }
+        };
+        d = (d.getMonth()+1) + "/"+ d.getDate() + "/" + d.getFullYear() + " at " + hours + ":" + minutes;
+        return d;
+    }
 
     Messages.prototype.save = function() {
         Messages.all.push(this);
@@ -24,6 +44,7 @@ $(function() {
     };
 
     Messages.prototype.render = function() {
+        console.log(this.createdAt);
         var message = template(this);
         $messages.append(message);
     };
@@ -34,6 +55,7 @@ $(function() {
         $('.messages-section').toggleClass('col-sm-12');
         $('.messages-section').toggleClass('col-sm-8');
     });
+
 
     function getUsername() {
     	//get username from Local Storage or prompt user
@@ -64,9 +86,12 @@ $(function() {
     	var username = getUsername();
         // var sentiment = getSentiment();
         //message is getting sent to Firebase before username is ready??
+        var date = new Date();
+        date = dateFormat(date);
     	myFirebaseRef.push({
     		username: username, 
-    		message: $('#message').val()
+    		message: $('#message').val(), 
+            createdAt: date
     	});
         $('.chat-form')[0].reset();
         scrollToBottom();
@@ -81,7 +106,8 @@ $(function() {
         var messageData = snapshot.val();
         messageCount++;
         // var sentiment = messageData.sentiment || getSentiment(messageData.message);
-        var message = new Messages(messageData.message, messageData.username);
+        var time = messageData.createdAt || (new Date().getTime());
+        var message = new Messages(messageData.message, messageData.username, time);
         message.save();
         message.render();
     }

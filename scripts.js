@@ -27,8 +27,6 @@ $(function() {
         var message = template(this);
         $messages.append(message);
     };
-
-    $('.messages-row').animate({ 'scrollTop': $('.messages-row')[0].scrollHeight}, '2000');
     
     $('.glyphicon.navbar-link').on('click', function(event) {
         $('.data-section').toggleClass('show');
@@ -55,26 +53,29 @@ $(function() {
     	return username;
     }
 
+    function scrollToBottom() {
+        $(".messages-row").animate({ scrollTop: $('.messages-row').prop("scrollHeight")}, 1000);
+    }
+
     getUsername();
 
     $('.chat-form').on('submit', function(event) {
         event.preventDefault();
-    	var username = getUsername() || "anonymous";
+    	var username = getUsername();
+        // var sentiment = getSentiment();
         //message is getting sent to Firebase before username is ready??
     	myFirebaseRef.push({
     		username: username, 
     		message: $('#message').val()
     	});
         $('.chat-form')[0].reset();
+        scrollToBottom();
     });
 
     myFirebaseRef.on("child_added", getMessageFromFirebase);
-
-    // function renderMessages(message) {
-    //     var messageHtml = template(message);
-    //     console.log(messageHtml);
-    //     $messages.append(messageHtml);
-    // }
+    myFirebaseRef.once("value", function(snap) {
+      console.log("initial data loaded!", scrollToBottom());
+    });
 
     function getMessageFromFirebase(snapshot) {
         var messageData = snapshot.val();
@@ -85,13 +86,6 @@ $(function() {
         message.render();
     }
 
-    // myFirebaseRef.once("value", function(snap) {
-    //     if (Object.keys(snap.val()).length === messageCount) {
-    //         console.log("initial data loaded!");
-    //         var allMessages = Messages.all;
-    //         renderMessages(allMessages);
-    //     } 
-    // });
 
 
     //---ALCHEMY SENTIMENT API--//

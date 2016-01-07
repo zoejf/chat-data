@@ -37,44 +37,54 @@
 	    </div>
 	  </div>
 	</div>
-	<!-- <div class="container-fluid"> -->
-		<div class="row main-row">
-			<div class="col-sm-12 messages-section">
-				<div class="row messages-row">
-				 	<h4>No messages yet!</h4>	
-				 	<div id="messages-list">
-				 		<script id="messages-template" type="text/x-handlebars-template">
-					 		<div class="one-message">
-					 			<div class="message-bubble">
-					 				{{message}}	
-					 			</div>
-					 			<div class="author">
-					 				{{author}} -- {{createdAt}}
-					 			</div>
-					 		</div>
-				 		</script>
-				 	</div>
-				</div>
-				<div class="row input-row">
-					<form class="form-inline chat-form">
-						<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
-						<button type="submit" class="btn btn-primary" id="Send">Send</button>
-					</form>
-				<!-- 			<p class="chatting-as">Chatting as NAME <a data-toggle="modal" data-target="#myModal">[change]</a></p> -->
-				</div>
+	<div class="row main-row">
+		<div class="col-sm-12 messages-section">
+			<div class="row messages-row">
+			 	<h4>No messages yet!</h4>	
+			 	<div id="messages-list">
+			 		<script id="messages-template" type="text/x-handlebars-template">
+				 		<div class="one-message">
+				 			<div class="message-bubble">
+				 				{{message}}	
+				 			</div>
+				 			<div class="author">
+				 				{{username}} ({{createdAt}})
+				 			</div>
+				 		</div>
+			 		</script>
+			 	</div>
 			</div>
-			<div class="data-section">
-				<h1>Analyze It!</h1>
-				<button type="button" class="btn btn-info" id="update-data">Update Data</button>
-				<div id="sentiment">
-					
-				</div>
-				<p class="fine-print">Note: Score refers to sentiment strength (0.0 == neutral)</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur facere velit, suscipit quia expedita. Asperiores amet, cumque mollitia explicabo eius quaerat molestiae earum magnam accusamus quibusdam quidem repudiandae odit consectetur.</p>
-				<!-- this section will contain data visualizations ...-->
+			<div class="row input-row">
+				<form class="form-inline chat-form">
+					<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
+					<button type="submit" class="btn btn-primary" id="Send">Send</button>
+				</form>
+			<!-- 			<p class="chatting-as">Chatting as NAME <a data-toggle="modal" data-target="#myModal">[change]</a></p> -->
 			</div>
 		</div>
-	<!-- </div> -->
+		<div class="data-section">
+			<div id="sentiments">
+				<h4>
+					How are students feeling?
+					<button type="button" class="btn btn-info btn-sm" id="update-data">Update Data</button>
+				</h4>
+				<script id="sentiment-template" type="text/x-handlebars-template">
+					<div class="sentiment-types">
+						<strong>Positive</strong> {{positive}}
+						<strong>Negative</strong> {{negative}}
+						<strong>Neutral</strong>  {{neutral}}
+					</div>
+					<div class="score">
+						<strong>Sentiment Strength</strong>  {{average}}
+					</div>
+					<div>
+						<strong>{{length}} messages analyzed</strong>
+					</div>
+					<p class="fine-print">Note: Score refers to sentiment strength. The stronger the sentiment, the further from zero (0.0 is neutral).</p>
+				</script>
+			</div>
+		</div>
+	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>

@@ -106,21 +106,19 @@ $(function() {
         var scoreNum;
         var typeString;
         if (data.docSentiment) {
-            scoreNum = parseFloat(data.docSentiment.score);
-            typeString = data.docSentiment.type;
+            scoreNum = parseFloat(data.docSentiment.score) || 0;
+            typeString = data.docSentiment.type || "neutral";
         } else {
             scoreNum = 0;
             typeString = "neutral";
         }
-        message.sentiment[0] = scoreNum;
-        message.sentiment[1] = typeString;
 
         var newMessage = {
             username: message.username, 
             message: message.message, 
             createdAt: message.createdAt, 
-            sentimentScore: message.sentiment[0],
-            sentimentString: message.sentiment[1]
+            sentimentScore: scoreNum,
+            sentimentString: typeString
         };
         
         myFirebaseRef.push(newMessage);
@@ -143,7 +141,8 @@ $(function() {
         username: getUsername(),
         message: $('#message').val(),
         createdAt: date, 
-        sentiment: []
+        sentimentScore: 0,
+        sentimentString: "neutral"
     };
     console.log("message before sentiment", message);
     setWithSentiment(message);

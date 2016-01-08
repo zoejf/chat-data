@@ -1,7 +1,7 @@
 $(function() {
 
   //----Firebase Setup----//
-  var myFirebaseRef = new Firebase("https://radiant-fire-16.firebaseio.com/");
+  var myFirebaseRef = new Firebase("https://classroom-chat.firebaseio.com/");
   var messageCount = 0;
   
   //----Handlebars Setup----//

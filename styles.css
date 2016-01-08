@@ -1,12 +1,23 @@
 body {
 	margin: 0;
 }
+.modal-title {
+	text-align: center;
+}
 .main-row {
 	padding: 0px;
 	height: 100vh;
 }
 .show {
 	display: block;
+}
+.username-form {
+	width: 80%;
+	margin: 0 auto;
+}
+input#username {
+	width: 80%;
+	margin: 0 auto;
 }
 .data-section {
 	display: none;
@@ -72,7 +83,6 @@ div.message-bubble::after {
 	background-color: LightBlue;
 	padding-top: 30px;
 	position: absolute;
-	/*bottom: 0px;*/
 	width: 110%;
 	margin-bottom: -50px;
 }

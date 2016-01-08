@@ -1,7 +1,7 @@
 $(function() {
 
   //----Firebase Setup----//
-  var myFirebaseRef = new Firebase("https://classroom-chat.firebaseio.com/");
+  var myFirebaseRef = new Firebase("https://classroom-chat.firebaseio.com/messages/");
   var messageCount = 0;
   
   //----Handlebars Setup----//
@@ -35,8 +35,8 @@ $(function() {
     $(".messages-row").animate({ scrollTop: $('.messages-row').prop("scrollHeight")}, 1000);
   }
 
-  function Messages (message, username, createdAt, score, string) {
-    this.message = message;
+  function Messages (content, username, createdAt, score, string) {
+    this.content = content;
     this.username = username;
     this.createdAt = createdAt;
     this.sentimentScore = score;
@@ -54,15 +54,6 @@ $(function() {
   };
 
   function dateFormat(d) {
-    // var hours = function hours() {
-    //     var h = d.getHours();
-    //     if (h < 10) {
-    //         h = "0" + h;
-    //         return h;
-    //     } else {
-    //         return h;
-    //     }
-    // };
     // var minutes = function minutes() {
     //     if (d.getMinutes() < 10) {
     //         return "0" + d.getMinutes();
@@ -80,13 +71,13 @@ $(function() {
     var time = messageData.createdAt || (new Date().getTime());
     var sentimentScore = messageData.sentimentScore || 0;
     var sentimentString = messageData.sentimentString || "neutral";
-    var message = new Messages(messageData.message, messageData.username, time, sentimentScore, sentimentString);
+    var message = new Messages(messageData.content, messageData.username, time, sentimentScore, sentimentString);
     message.save();
     message.render();
   }
 
   function setWithSentiment(message) {
-    var text = message.message.replace(/[.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    var text = message.content.replace(/[.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
     text = text.replace(/\s/g, "%20");
     $.ajax({
       url: 'http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment',
@@ -108,6 +99,7 @@ $(function() {
         if (data.docSentiment) {
             scoreNum = parseFloat(data.docSentiment.score) || 0;
             typeString = data.docSentiment.type || "neutral";
+        //else condition in case sentiment comes back as blank or undefined
         } else {
             scoreNum = 0;
             typeString = "neutral";
@@ -115,7 +107,7 @@ $(function() {
 
         var newMessage = {
             username: message.username, 
-            message: message.message, 
+            content: message.content, 
             createdAt: message.createdAt, 
             sentimentScore: scoreNum,
             sentimentString: typeString
@@ -139,7 +131,7 @@ $(function() {
     date = dateFormat(date);
     var message = {
         username: getUsername(),
-        message: $('#message').val(),
+        content: $('#message').val(),
         createdAt: date, 
         sentimentScore: 0,
         sentimentString: "neutral"

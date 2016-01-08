@@ -54,14 +54,15 @@ $(function() {
   };
 
   function dateFormat(d) {
-    // var minutes = function minutes() {
-    //     if (d.getMinutes() < 10) {
-    //         return "0" + d.getMinutes();
-    //     } else {
-    //         d.getMinutes();
-    //     }
-    // };
-    d = (d.getMonth()+1) + "/"+ d.getDate() + "/" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes();
+    var minutes = function() {
+        var m = d.getMinutes();
+        if (m < 10) {
+            return "0" + m;
+        } else {
+            return m;
+        }
+    };
+    d = (d.getMonth()+1) + "/"+ d.getDate() + "/" + d.getFullYear() + " at " + d.getHours() + ":" + minutes();
     return d;
   }
 
@@ -84,7 +85,6 @@ $(function() {
       type: 'POST', 
       dataType: 'jsonp',
       contentType: 'json',
-      async: 'false',
       jsonpCallback: 'callback', 
       data: {
           apikey:'cdbf2ddc186378fdc5bb377f10b0e5e4770702d2', 
@@ -99,7 +99,7 @@ $(function() {
         if (data.docSentiment) {
             scoreNum = parseFloat(data.docSentiment.score) || 0;
             typeString = data.docSentiment.type || "neutral";
-        //else condition in case sentiment comes back as blank or undefined
+        //else sentiment comes back as blank or undefined
         } else {
             scoreNum = 0;
             typeString = "neutral";

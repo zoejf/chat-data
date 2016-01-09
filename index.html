@@ -6,6 +6,11 @@
 
 	<!-- bootstrap css -->
 	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- font awesome icons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<!-- google fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
 	<!-- custom styles -->
 	<link type="text/css" rel="stylesheet" href="styles.css">
 </head>
@@ -13,11 +18,24 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
 	    <div class="navbar-header">
-	    	<span class="navbar-brand">Classroom Chat</span>
+	    	<span class="navbar-brand fredoka">ClassroomCh@t</span>
 	    </div>
-	    <span class="navbar-text navbar-right">
-	    	<i class="glyphicon glyphicon-tasks navbar-link"></i>
-	    </span>
+	    <ul class="nav navbar-nav navbar-right">
+	    	<li class="dropdown">
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+	        	<span id="username-span">
+	        		<script id="username-template" type="text/x-handlebars-template">
+	        			Chatting as {{username}}
+	        			<span class="caret"></span>
+	        		</script>
+	        	</span>
+	        </a>
+        	<ul class="dropdown-menu">
+          	<li><a id="change-users">Switch Users</a></li>
+        	</ul>
+	      </li>
+	    	<li class="navbar-text"><i class="fa fa-bar-chart fa-2" id="chart"></i></li>
+	    </ul>
 	  </div>
 	</nav>
 	<!-- Modal -->
@@ -26,7 +44,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-	        <h4 class="modal-title" id="myModalLabel">Get Started with Classroom Chat</h4>
+	        <h4 class="modal-title" id="myModalLabel">Get Started with ClassroomCh@t</h4>
 	      </div>
 	      <div class="modal-body">
 	        <form class="username-form form-inline">
@@ -59,20 +77,25 @@
 					<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
 					<button type="submit" class="btn btn-primary" id="Send">Send</button>
 				</form>
-			<!-- 			<p class="chatting-as">Chatting as NAME <a data-toggle="modal" data-target="#myModal">[change]</a></p> -->
 			</div>
 		</div>
 		<div class="data-section">
 			<div id="sentiments">
-				<h4>
-					How are students feeling?
+				<h5>
+					<span class="fredoka">How are students feeling?</span>
 					<button type="button" class="btn btn-info btn-sm" id="update-data">Update Data</button>
-				</h4>
+				</h5>
 				<script id="sentiment-template" type="text/x-handlebars-template">
 					<div class="sentiment-types">
-						<strong>Positive</strong> {{positive}}
-						<strong>Negative</strong> {{negative}}
-						<strong>Neutral</strong>  {{neutral}}
+						<div class="sentiment">
+							<strong>Positive</strong> {{positive}}
+						</div>
+						<div class="sentiment">
+							<strong>Negative</strong> {{negative}}
+						</div>
+						<div class="sentiment">
+							<strong>Neutral</strong>  {{neutral}}
+						</div>
 					</div>
 					<div class="score">
 						<strong>Sentiment Strength</strong>  {{average}}
@@ -80,6 +103,7 @@
 					<div>
 						<strong>{{length}} messages analyzed</strong>
 					</div>
+					<br>
 					<p class="fine-print">Note: Score refers to sentiment strength. The stronger the sentiment, the further from zero (0.0 is neutral).</p>
 				</script>
 			</div>

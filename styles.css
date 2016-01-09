@@ -1,6 +1,23 @@
 body {
 	margin: 0;
+	font-family: 'Open Sans', sans-serif;
 }
+.fredoka {
+	font-family: 'Fredoka One', cursive;
+	font-size: 1.3em;
+}
+nav.navbar {
+	background-color: white;
+	margin-bottom: 10px;
+}
+i#chart {
+	font-size: 1.5em;
+	cursor: pointer;
+}
+i#chart:hover {
+	color: #333333;
+}
+
 .modal-title {
 	text-align: center;
 }
@@ -24,6 +41,8 @@ input#username {
 	background-color: gray;
 	height:100vh;
 	padding-top: 70px;
+
+	transition-duration: 2s;
 }
 .col-sm-8 {
 	padding: 0px;
@@ -48,7 +67,7 @@ div.message-bubble {
 	width: 75%;
 	padding: 15px;
 	margin-top: 20px;
-	margin-bottom: 10px; 
+	margin-bottom: 20px; 
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -101,8 +120,6 @@ input#message {
 }
 #update-data {
 	float: right;
-	background-color: LightBlue;
 	margin-top: -6px;
 	margin-right: 15px;
-	border-color: LightBlue;
 }

@@ -14,6 +14,11 @@ $(function() {
   var templateSentiments = Handlebars.compile(sourceSentiment);
   var $sentiments = $('#sentiments');
 
+  var sourceUser = $('#username-template').html();
+  var templateUser = Handlebars.compile(sourceUser);
+  var $userDropdown = $('#username-span');
+
+
   //----FUNCTIONS----//
   function getUsername() {
     var username = localStorage.getItem("username");
@@ -27,7 +32,13 @@ $(function() {
     } else if (username == 'null') {
           localStorage.setItem("username", "anonymous_panda");
           username = "anonymous_panda";   
-      }
+    }
+
+    $userDropdown.empty();
+    var usernameHtml = templateUser({username: username});
+    console.log(usernameHtml);
+    $userDropdown.append(usernameHtml);
+
     return username;
   }
 
@@ -125,6 +136,7 @@ $(function() {
   Messages.all = [];
   getUsername();
 
+
   $('.chat-form').on('submit', function(event) {
     event.preventDefault();
     var date = new Date();
@@ -154,11 +166,16 @@ $(function() {
 
   //----EVENT LISTENERS---//
 
-  $('.glyphicon.navbar-link').on('click', function(event) {
-      $('.data-section').toggleClass('show');
-      $('.data-section').toggleClass('col-sm-4');
-      $('.messages-section').toggleClass('col-sm-12');
-      $('.messages-section').toggleClass('col-sm-8');
+  $('#chart').on('click', function(event) {
+    $('.data-section').toggleClass('show');
+    $('.data-section').toggleClass('col-sm-4');
+    $('.messages-section').toggleClass('col-sm-12');
+    $('.messages-section').toggleClass('col-sm-8');
+  });
+
+  $('#change-users').on('click', function() {
+    localStorage.clear();
+    getUsername();
   });
 
   $('#update-data').on('click', function() {
@@ -183,10 +200,6 @@ $(function() {
 
     //append to the page with handlebars
     var data = {average: average, positive: sentimentTypes[0], negative: sentimentTypes[1], neutral: sentimentTypes[2], length: messages.length};
-
-    // var sourceSentiment = $('#sentiment-template').html();
-    // var templateSentiments = Handlebars.compile(sourceSentiment);
-
     var sentimentData = templateSentiments(data);
     $sentiments.append(sentimentData);
 

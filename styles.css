@@ -41,8 +41,6 @@ input#username {
 	background-color: gray;
 	height:100vh;
 	padding-top: 70px;
-
-	transition-duration: 2s;
 }
 .col-sm-8 {
 	padding: 0px;
@@ -122,4 +120,10 @@ input#message {
 	float: right;
 	margin-top: -6px;
 	margin-right: 15px;
+}
+canvas {
+	margin-top: 30px;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }

@@ -204,5 +204,23 @@ $(function() {
     $sentiments.append(sentimentData);
 
   });
+  
+  //----SENTIMENT CHART----//
+  var data = {
+      labels: ["Positive", "Negative", "Neutral"],
+      datasets: [
+          {
+              label: "My First dataset",
+              fillColor: "rgba(151,187,205,0.5)",
+              strokeColor: "rgba(151,187,205,0.8)",
+              highlightFill: "rgba(151,187,205,0.75)",
+              highlightStroke: "rgba(151,187,205,1)",
+              data: [2, 5, 3]
+          },
+      ]
+  };
+
+  var ctx = $('#sentimentChart').get(0).getContext('2d');
+  var sentimentChart = new Chart(ctx).Bar(data);
 
 });

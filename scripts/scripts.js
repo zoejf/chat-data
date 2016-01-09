@@ -1,6 +1,6 @@
 $(function() {
 
-  //----Firebase Setup----//
+  //----Firebase Messages Setup----//
   var myFirebaseRef = new Firebase("https://classroom-chat.firebaseio.com/messages/");
   var messageCount = 0;
   

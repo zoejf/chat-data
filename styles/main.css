@@ -32,6 +32,16 @@ i#chart:hover {
 .show {
 	display: block;
 }
+ul.technologies {
+	list-style: none;
+}
+.modal-body a {
+	text-decoration: none;
+	color: rgba(169,68,66,1);
+}
+.modal-body a:hover {
+	color: #333333;
+}
 .username-form {
 	width: 80%;
 	margin: 0 auto;

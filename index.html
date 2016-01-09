@@ -12,7 +12,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
 	<!-- custom styles -->
-	<link type="text/css" rel="stylesheet" href="styles.css">
+	<link type="text/css" rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -20,6 +20,11 @@
 	    <div class="navbar-header">
 	    	<span class="navbar-brand fredoka red">ClassroomCh@t</span>
 	    </div>
+	    <ul class="nav navbar-nav">
+	    	<li>
+	    		<a data-toggle="modal" data-target="#aboutModal">About</a>
+	    	</li>
+	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
 	    	<li class="dropdown">
 	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -38,7 +43,7 @@
 	    </ul>
 	  </div>
 	</nav>
-	<!-- Modal -->
+	<!-- Username Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -54,7 +59,35 @@
 	      </div>
 	    </div>
 	  </div>
-	</div>
+	</div> <!-- end of username modal -->
+
+	<!-- About Modal -->
+	<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title fredoka red" id="myModalLabel">About ClassroomCh@t</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<p>ClassroomChat is a demo web application that simulates how a teacher might host a forum for classroom discussions. This chat room allows any user to look at the overall feeling of the messages and monitor any issues that might arise in the classroom.</p>
+	        
+	        <p>The application is written in JavaScript, HTML5, and CSS3. It is in early development stages and not ready for wide release. Technologies and libraries used include: </p>
+	        <ul class="technologies">
+	        	<li><a href="https://www.firebase.com/" target="_blank">Firebase</a></li>
+	        	<li>jQuery</li>
+	        	<li>Handlebars</li>
+	        	<li><a href="http://www.alchemyapi.com/api/sentiment/textc.html" target="_blank">Alechemy's Text API</a> for Sentiment Analysis</li>
+	        	<li><a href="http://www.chartjs.org/" target="_blank">Chart.js</a></li>
+	        	<li>Bootstrap</li>
+	        	<li>Local Storage</li>
+	        </ul>
+	        Created by <a href="http://zoefoss.com" target="_blank">Zo&euml; Foss</a> &copy;2016. See the code on <a href="https://github.com/zoejf/chat-data">Github</a>.
+	      </div>
+	    </div>
+	  </div>
+	</div><!--  end of About Modal -->
+
 	<div class="row main-row">
 		<div class="col-sm-12 messages-section">
 			<div class="row messages-row">	

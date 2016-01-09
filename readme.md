@@ -13,3 +13,7 @@ A JavaScript chat application that lets a user see the feeling and other data ab
 - JQuery
 - Bootstrap
 
+###Next Steps
+- Encorporate a word cloud with D3.js
+- Allow different users (ie. a teacher) to have admin permissions to flag a message or see more detailed data analysis.  
+

@@ -15,5 +15,8 @@ A JavaScript chat application that lets a user see the feeling and other data ab
 
 ###Next Steps
 - Encorporate a word cloud with D3.js
-- Allow different users (ie. a teacher) to have admin permissions to flag a message or see more detailed data analysis.  
+- Allow different users (ie. a teacher) to have admin permissions to flag a message or see more detailed data analysis. 
+
+
+Live Site: <a href="http://zoejf.github.io/chat-data/">Classroom Chat</a> 
 

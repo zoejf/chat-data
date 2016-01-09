@@ -12,7 +12,7 @@ $(function() {
 
   var sourceSentiment = $('#sentiment-template').html();
   var templateSentiments = Handlebars.compile(sourceSentiment);
-  var $sentiments = $('#sentiments');
+  var $sentiments = $('#sentiments-text');
 
   var sourceUser = $('#username-template').html();
   var templateUser = Handlebars.compile(sourceUser);
@@ -198,10 +198,34 @@ $(function() {
     console.log("counts", sentimentTypes[0], sentimentTypes[1], sentimentTypes[2]);
     var average = totalSentiment / messages.length;
 
-    //append to the page with handlebars
+    //append new data to the page with handlebars
+    $sentiments.empty();
     var data = {average: average, positive: sentimentTypes[0], negative: sentimentTypes[1], neutral: sentimentTypes[2], length: messages.length};
     var sentimentData = templateSentiments(data);
     $sentiments.append(sentimentData);
+
+    var chartData = {
+        labels: ["Positive", "Negative", "Neutral"],
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: [data.positive, data.negative, data.neutral]
+            }
+        ]
+    };
+
+    var ctx = $('#sentimentChart').get(0).getContext('2d');
+    var sentimentChart; 
+    if (sentimentChart) {
+      sentimentChart.empty();
+    } 
+    ctx.canvas.width = 300;
+    ctx.canvas.height = 300;
+    sentimentChart = new Chart(ctx).Bar(chartData);
 
   });
 

@@ -197,10 +197,18 @@ $(function() {
 
     console.log("counts", sentimentTypes[0], sentimentTypes[1], sentimentTypes[2]);
     var average = totalSentiment / messages.length;
+    var color; 
+    if (average < 0) {
+      color = "negative-color";
+    } else if (average > 0) {
+      color = "positive-color";
+    } else if (average === 0) {
+      color = "neutral-color";
+    }
 
     //append new data to the page with handlebars
     $sentiments.empty();
-    var data = {average: average, positive: sentimentTypes[0], negative: sentimentTypes[1], neutral: sentimentTypes[2], length: messages.length};
+    var data = {average: average.toFixed(3), positive: sentimentTypes[0], negative: sentimentTypes[1], neutral: sentimentTypes[2], length: messages.length, color: color};
     var sentimentData = templateSentiments(data);
     $sentiments.append(sentimentData);
 
@@ -209,9 +217,9 @@ $(function() {
         datasets: [
             {
                 label: "My First dataset",
-                fillColor: "rgba(151,187,205,0.5)",
+                fillColor: "rgba(151,187,205,0.6)",
                 strokeColor: "rgba(151,187,205,0.8)",
-                highlightFill: "rgba(151,187,205,0.75)",
+                highlightFill: "rgba(151,187,205,0.8)",
                 highlightStroke: "rgba(151,187,205,1)",
                 data: [data.positive, data.negative, data.neutral]
             }

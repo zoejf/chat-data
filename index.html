@@ -48,7 +48,7 @@
 	      </div>
 	      <div class="modal-body">
 	        <form class="username-form form-inline">
-	        	<input type="text" class="form-control" id="username" placeholder="Choose your username..." autofocus>
+	        	<input type="text" class="form-control" id="username" placeholder="Choose your username..." autofocus required>
 	        	<button type="submit" class="btn btn-default">Submit</button>
 	        </form>
 	      </div>
@@ -73,7 +73,7 @@
 			</div>
 			<div class="row input-row">
 				<form class="form-inline chat-form">
-					<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
+					<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus required>
 					<button type="submit" class="btn btn-default" id="Send">Send</button>
 				</form>
 			</div>
@@ -92,9 +92,7 @@
 				<div id="sentiments-text">
 					<script id="sentiment-template" type="text/x-handlebars-template">
 						<div class="score">
-							<strong>Sentiment Strength</strong>  {{average}}  
-						</div>
-						<div>
+							<strong>Sentiment Strength:  <span class="{{color}}">{{average}}</span></strong> <br>
 							<strong>{{length}} messages analyzed</strong>
 						</div>
 						<br>
@@ -102,8 +100,8 @@
 					</script>
 				</div>
 			</div>
-		</div>
-	</div>
+		</div> <!-- end of data section -->
+	</div> <!-- end of "main row" aka container -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>

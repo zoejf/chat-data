@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	font-family: 'Open Sans', sans-serif;
+	font-style: 14;
 }
 .fredoka {
 	font-family: 'Fredoka One', cursive;
@@ -44,6 +45,8 @@ input#username {
 	background-color: rgba(153,153,153,1);
 	height:100vh;
 	padding-top: 70px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 .col-sm-8 {
 	padding: 0px;
@@ -115,9 +118,8 @@ input#message {
 	margin: 0 auto;
 }
 .fine-print {
-	text-align: center;
 	font-style: italic;
-	font-size: .7em;
+	font-size: .95em;
 }
 #update-data {
 	float: right;
@@ -129,4 +131,16 @@ canvas {
 	padding-left: 40px;
 	max-width: 300px;
 	max-height: 300px;
+}
+.score {
+	padding-left: 40px;
+}
+.negative-color {
+	color: rgba(255,0,0,1);
+}
+.positive-color {
+	color: rgba(28,222,30,1);
+}
+.neutral-color {
+	color: rgba(51,51,51,1);
 }

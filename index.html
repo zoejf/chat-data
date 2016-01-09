@@ -18,7 +18,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
 	    <div class="navbar-header">
-	    	<span class="navbar-brand fredoka">ClassroomCh@t</span>
+	    	<span class="navbar-brand fredoka red">ClassroomCh@t</span>
 	    </div>
 	    <ul class="nav navbar-nav navbar-right">
 	    	<li class="dropdown">
@@ -49,7 +49,7 @@
 	      <div class="modal-body">
 	        <form class="username-form form-inline">
 	        	<input type="text" class="form-control" id="username" placeholder="Choose your username..." autofocus>
-	        	<button type="submit" class="btn btn-primary">Submit</button>
+	        	<button type="submit" class="btn btn-default">Submit</button>
 	        </form>
 	      </div>
 	    </div>
@@ -57,8 +57,7 @@
 	</div>
 	<div class="row main-row">
 		<div class="col-sm-12 messages-section">
-			<div class="row messages-row">
-			 	<h4>No messages yet!</h4>	
+			<div class="row messages-row">	
 			 	<div id="messages-list">
 			 		<script id="messages-template" type="text/x-handlebars-template">
 				 		<div class="one-message">
@@ -75,39 +74,32 @@
 			<div class="row input-row">
 				<form class="form-inline chat-form">
 					<input type="text" class="form-control" id="message" rows="2" placeholder="Chat away..." autofocus>
-					<button type="submit" class="btn btn-primary" id="Send">Send</button>
+					<button type="submit" class="btn btn-default" id="Send">Send</button>
 				</form>
 			</div>
 		</div>
 		<div class="data-section">
 			<div id="sentiments">
 				<h5>
-					<span class="fredoka">How are students feeling?</span>
-					<button type="button" class="btn btn-info btn-sm" id="update-data">Update Data</button>
+					<span class="fredoka red">How are students feeling?</span>
+					<button type="button" class="btn btn-default btn-sm" id="update-data">Update Data</button>
 				</h5>
-				<script id="sentiment-template" type="text/x-handlebars-template">
-					<div class="sentiment-types">
-						<div class="sentiment">
-							<strong>Positive</strong> {{positive}}
-						</div>
-						<div class="sentiment">
-							<strong>Negative</strong> {{negative}}
-						</div>
-						<div class="sentiment">
-							<strong>Neutral</strong>  {{neutral}}
-						</div>
-					</div>
-					<div class="score">
-						<strong>Sentiment Strength</strong>  {{average}}
-					</div>
-					<div>
-						<strong>{{length}} messages analyzed</strong>
-					</div>
-					<br>
-					<p class="fine-print">Note: Score refers to sentiment strength. The stronger the sentiment, the further from zero (0.0 is neutral).</p>
-				</script>
 				<div class="chart">
-					<canvas id="sentimentChart" width="300" height="300"></canvas>	
+					<canvas id="sentimentChart">
+						
+					</canvas>	
+				</div>
+				<div id="sentiments-text">
+					<script id="sentiment-template" type="text/x-handlebars-template">
+						<div class="score">
+							<strong>Sentiment Strength</strong>  {{average}}  
+						</div>
+						<div>
+							<strong>{{length}} messages analyzed</strong>
+						</div>
+						<br>
+						<p class="fine-print">Note: Sentiment strength is in relation to 0 or neutral. The stronger the sentiment, in the positive or negative direction, the further the number will be from zero.</p>
+					</script>
 				</div>
 			</div>
 		</div>

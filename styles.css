@@ -6,6 +6,9 @@ body {
 	font-family: 'Fredoka One', cursive;
 	font-size: 1.3em;
 }
+.red {
+	color: rgba(169,68,66,1) !important;
+}
 nav.navbar {
 	background-color: white;
 	margin-bottom: 10px;
@@ -38,7 +41,7 @@ input#username {
 }
 .data-section {
 	display: none;
-	background-color: gray;
+	background-color: rgba(153,153,153,1);
 	height:100vh;
 	padding-top: 70px;
 }
@@ -54,13 +57,13 @@ input#username {
 .messages-row h4 {
 	display: none;
 	text-align: center;
-	color: LightBlue;
+	color: rgba(173,216,230,1);
 	margin-top: 50px;
 }
 div.message-bubble {
 	border-radius: 10px;
 	color: white;
-	background-color: LightGray;
+	background-color: rgba(211,211,211,1);
 	position: relative;
 	width: 75%;
 	padding: 15px;
@@ -73,8 +76,8 @@ div.message-bubble::after {
 	content: "";
 	height: 0px;
 	width: 0px;
-	border: 20px solid LightGray;
-	border-top-color: LightGray;
+	border: 20px solid rgba(211,211,211,1);
+	border-top-color: rgba(211,211,211,1);
 	border-bottom-color: transparent;
 	border-right-color: transparent;
 	border-left-color: transparent;
@@ -86,7 +89,7 @@ div.message-bubble::after {
 	left: 10%;
 }
 .author {
-	color: LightGray;
+	color: rgba(211,211,211,1);
 	position: relative;
 	width: 75%;
 	height: 30px;
@@ -97,7 +100,7 @@ div.message-bubble::after {
 
 .input-row {
 	height: 15vh;
-	background-color: LightBlue;
+	background-color: rgba(173,216,230,1);
 	padding-top: 30px;
 	position: absolute;
 	width: 110%;
@@ -122,8 +125,8 @@ input#message {
 	margin-right: 15px;
 }
 canvas {
-	margin-top: 30px;
-	margin-bottom: 20px;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 30px auto;
+	padding-left: 40px;
+	max-width: 300px;
+	max-height: 300px;
 }

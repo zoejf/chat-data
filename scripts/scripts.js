@@ -126,7 +126,27 @@ $(function() {
         
         myFirebaseRef.push(newMessage);
         console.log('new message added: ', newMessage);
-      } 
+      }, 
+      error: function(xhr, error, errorThrown) {
+        if(xhr.status && xhr.status == 400) {
+          console.log(xhr.responseText);
+        } else {
+          console.log("something went wrong");
+        }
+
+        //still need to save message to firebase, but just with blank sentiment
+        var newMessage = {
+            username: message.username, 
+            content: message.content, 
+            createdAt: message.createdAt, 
+            sentimentScore: undefined,
+            sentimentString: undefined
+        };
+        
+        myFirebaseRef.push(newMessage);
+        console.log('new message added - no sentiment ', newMessage);
+
+      }
     });
   }
   //----END of functions setup----//

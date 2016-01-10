@@ -20,34 +20,45 @@
 	<link type="text/css" rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+	
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
-	    	<span class="navbar-brand fredoka red">ClassroomCh@t</span>
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <span class="navbar-brand fredoka red">ClassroomCh@t</span>
 	    </div>
-	    <ul class="nav navbar-nav">
-	    	<li>
-	    		<a data-toggle="modal" data-target="#aboutModal">About</a>
-	    	</li>
-	    </ul>
-	    <ul class="nav navbar-nav navbar-right">
-	    	<li class="dropdown">
-	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-	        	<span id="username-span">
-	        		<script id="username-template" type="text/x-handlebars-template">
-	        			Chatting as {{username}}
-	        			<span class="caret"></span>
-	        		</script>
-	        	</span>
-	        </a>
-        	<ul class="dropdown-menu">
-          	<li><a id="change-users">Switch Users</a></li>
-        	</ul>
-	      </li>
-	    	<li class="navbar-text"><i class="fa fa-bar-chart fa-2" id="chart"></i></li>
-	    </ul>
-	  </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a data-toggle="modal" data-target="#aboutModal">About</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+	          	<span id="username-span">
+	          		<script id="username-template" type="text/x-handlebars-template">
+	          			Chatting as {{username}}
+	          			<span class="caret"></span>
+	          		</script>
+	          	</span>
+	          </a>
+	          <ul class="dropdown-menu">
+	            <li><a id="change-users">Switch Users</a></li>
+	          </ul>
+	        </li>
+	        <li><a><i class="fa fa-bar-chart fa-2" id="chart"></i></a></li>
+	      </ul>
+	    </div><!-- end of .navbar-collapse -->
+	  </div><!-- end of .container-->
 	</nav>
+
 	<!-- Username Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
